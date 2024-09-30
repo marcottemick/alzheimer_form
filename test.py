@@ -1,6 +1,6 @@
 import unittest
 import json
-from API import app
+from back.API import app
 
 class AppTests(unittest.TestCase):
     def setUp(self):
