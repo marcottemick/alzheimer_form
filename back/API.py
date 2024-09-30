@@ -49,9 +49,10 @@ class PredictionResponse(BaseModel):
 def get_connexion():
     return {"response": True}
 
-@app.post("/form", response_model=PredictionResponse)
+@app.post("/predict", response_model=PredictionResponse)
 def put_form(form: HealthData):
     project_path = os.getcwd() + "\\"
+    print(project_path)
     road_model = project_path + "decision_tree.joblib"
     loaded_model = joblib.load(road_model)
     df_form = pd.DataFrame(data=form.dict())
