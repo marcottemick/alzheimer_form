@@ -1,18 +1,22 @@
 import unittest
 import json
-from back.API import app
+from fastapi.testclient import TestClient
+from back.API import app  # Ton application FastAPI
+
+# Crée une instance de TestClient
+client = TestClient(app)
 
 class AppTests(unittest.TestCase):
     def setUp(self):
-        self.app = app.test_client()
+        self.client = client
         self.maxDiff = None
 
     def test_connexion(self):
-        response = self.app.get('/')
+        response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        data = json.loads(response.get_data(as_text=True))
+        data = response.json()
 
         self.assertEqual(data['response'], 'connection au serveur')
 
 if __name__ == '__main__':
-    unittest.main(verbosity= 2)
+    unittest.main(verbosity=2)
