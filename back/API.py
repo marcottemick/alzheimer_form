@@ -45,7 +45,7 @@ class PredictionResponse(BaseModel):
     predict: int  # Liste des prédictions
     confidence: float    # Pourcentage de confiance
 
-@app.get("/")
+@app.get("/connexion")
 def get_connexion():
     return {"response": True}
 
