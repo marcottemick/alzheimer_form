@@ -12,7 +12,7 @@ class AppTests(unittest.TestCase):
         self.maxDiff = None
 
     def test_connexion(self):
-        response = self.client.get('/')
+        response = self.client.get('/connexion')
         self.assertEqual(response.status_code, 200)
         data = response.json()
 
