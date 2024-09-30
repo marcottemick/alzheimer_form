@@ -16,7 +16,7 @@ class AppTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         data = response.json()
 
-        self.assertEqual(data['response'], 'connection au serveur')
+        self.assertEqual(data['response'], True)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
