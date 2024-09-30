@@ -51,10 +51,8 @@ def get_connexion():
 
 @app.post("/predict", response_model=PredictionResponse)
 def put_form(form: HealthData):
-    sep = '//' if os.name == 'nt' else '/'
-    project_path = os.getcwd()  + sep
-    print(project_path)
-    road_model = project_path + "decision_tree.joblib"
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    road_model = os.path.join(base_dir, 'decision_tree.joblib')
     loaded_model = joblib.load(road_model)
     df_form = pd.DataFrame(data=form.dict())
 
