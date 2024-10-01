@@ -1,31 +1,48 @@
-import logo from './logo.svg';
 import './App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchGetConnexion } from './hooks/endpoints';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Formulaires from './components/Formulaires/Formulaires';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 function App() {
+  const [connexionFail, setConnexionFail] = useState(false);
+
   useEffect(() => {
-    fetchGetConnexion().then(response => console.log(response))
+    fetchGetConnexion()
+      .then(response => {
+        response.response ? setConnexionFail(false) : setConnexionFail(true);
+      })
   }, [])
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const renderApp = () => {
+    return (
+      <div className='h-screen'>
+        <Router>
+          <header>
+            <Header />
+          </header>
+          <main>
+            <Routes>
+              <Route exact path='/' element={<Formulaires />} />
+            </Routes>
+          </main>
+          <footer>
+            <Footer />
+          </footer>
+        </Router>
+      </div>
+    );
+  }
+
+  if (connexionFail) {
+    return <p>erreur</p>
+  }
+  else {
+    return renderApp();
+  }
+
 }
 
 export default App;
