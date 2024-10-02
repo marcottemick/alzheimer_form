@@ -1,22 +1,13 @@
-import { useState } from "react";
 import ContainerForm from "./ContainerForm";
 import TypeNum from "./Inputs/TypeNum";
-// import TypeOptions from "./Inputs/TypeOptions";
 import TypeRadio from "./Inputs/TypeRadio";
 
-const LifestyleFactors = ({ title }) => {
-    const [BMI, setBMI] = useState("");
-    const [smoking, setSmoking] = useState("");
-    const [alcohol, setAlcohol] = useState("");
-    const [physicalAct, setPhysicalAct] = useState("");
-    const [dietQuality, setDietQuality] = useState("");
-    const [sleepQuality, setSleepQuality] = useState("");
-
+const LifestyleFactors = ({ title, formData, setFormData }) => {
     return (
         <ContainerForm title={title}>
             <TypeNum
-                num={BMI}
-                setNum={setBMI}
+                num={formData.BMI}
+                setNum={setFormData}
                 inputId="BMI"
                 label="IMC"
                 min={15}
@@ -25,15 +16,15 @@ const LifestyleFactors = ({ title }) => {
                 description="Indiquer l'indice de masse corporel du patient"
             />
             <TypeRadio
-                radio={smoking}
-                setRadio={setSmoking}
+                radio={formData.smoking}
+                setRadio={setFormData}
                 inputId="smoking"
                 label="Tabagisme"
                 description="Sélectionner si le patient fume (oui ou non)"
             />
             <TypeNum
-                num={alcohol}
-                setNum={setAlcohol}
+                num={formData.alcohol}
+                setNum={setFormData}
                 inputId="alcohol"
                 label="Alcoolémie"
                 min={0}
@@ -42,8 +33,8 @@ const LifestyleFactors = ({ title }) => {
                 description="Indiquer le volume d'alcool consommé par semaine"
             />
             <TypeNum
-                num={physicalAct}
-                setNum={setPhysicalAct}
+                num={formData.physicalAct}
+                setNum={setFormData}
                 inputId="physicalAct"
                 label="Activité physique"
                 min={0}
@@ -52,8 +43,8 @@ const LifestyleFactors = ({ title }) => {
                 description="Indiquer le nombre d'heure d'activité physique entre 0 et 10"
             />
             <TypeNum
-                num={dietQuality}
-                setNum={setDietQuality}
+                num={formData.dietQuality}
+                setNum={setFormData}
                 inputId="dietQuality"
                 label="Qualité de l'alimentation"
                 min={0}
@@ -62,8 +53,8 @@ const LifestyleFactors = ({ title }) => {
                 description="Indiquer le score de qualité de l'alimentation entre 0 et 10"
             />
             <TypeNum
-                num={sleepQuality}
-                setNum={setSleepQuality}
+                num={formData.sleepQuality}
+                setNum={setFormData}
                 inputId="sleepQuality"
                 label="Qualité du sommeil"
                 min={4}

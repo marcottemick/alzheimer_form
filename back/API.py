@@ -65,3 +65,5 @@ def put_form(form: HealthData):
     }
 
     return response
+
+# code pour lancer l'API : uvicorn API:app --reload

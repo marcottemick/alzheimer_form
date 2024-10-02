@@ -1,43 +1,36 @@
-import { useState } from "react";
 import ContainerForm from "./ContainerForm";
 import TypeText from "./Inputs/TypeText";
 import TypeNum from "./Inputs/TypeNum";
 import TypeOptions from "./Inputs/TypeOptions";
 
-const DemographicDetail = ({ title }) => {
-    const [firstName, setFirstName] = useState("");
-    const [name, setName] = useState("");
-    const [age, setAge] = useState("");
-    const [gender, setGender] = useState("")
-    const [ethnicity, setEthnicity] = useState("");
-    const [educationLevel, setEducationLevel] = useState("")
+const DemographicDetail = ({ title, formData, setFormData }) => {
 
     const optionsDemoDetail = {
         "gender": [{ "0": "Homme" }, { "1": "Femme" }],
-        "ethnicity": [{ "0": "Caucasien" }, { "1": "Subsaharienne", }, { "2": "Asiatique" }, { "3": "Autre" }],
+        "ethnicity": [{ "0": "Caucasien" }, { "1": "Subsaharienne" }, { "2": "Asiatique" }, { "3": "Autre" }],
         "educationLevel": [{ "0": "Collège" }, { "1": "Lycée" }, { "2": "bac+2/+3" }, { "3": "sup à bac+3" }]
     }
 
     return (
         <ContainerForm title={title}>
             <TypeText
-                text={firstName}
-                setText={setFirstName}
-                idInput="firstName"
+                text={formData.firstName}
+                setText={setFormData}
+                inputId="firstName"
                 label="Prénom"
                 description="Indiquer le prénom du patient"
             />
             <TypeText
-                text={name}
-                setText={setName}
-                idInput="name"
+                text={formData.name}
+                setText={setFormData}
+                inputId="name"
                 label="Nom"
                 description="Indiquer le nom du patient"
             />
             <TypeNum
-                num={age}
-                setNum={setAge}
-                idInput="age"
+                num={formData.age}
+                setNum={setFormData}
+                inputId="age"
                 label="Âge"
                 min={60}
                 max={90}
@@ -46,26 +39,26 @@ const DemographicDetail = ({ title }) => {
             />
             <TypeOptions
                 options={optionsDemoDetail.gender}
-                option={gender}
-                setOption={setGender}
-                idInput="gender"
+                option={formData.gender}
+                setOption={setFormData}
+                inputId="gender"
                 label="Sexe"
                 description="Indiquer le sexe du patient"
             />
             <TypeOptions
                 options={optionsDemoDetail.ethnicity}
-                option={ethnicity}
-                setOption={setEthnicity}
-                idInput="ethnicity"
+                option={formData.ethnicity}
+                setOption={setFormData}
+                inputId="ethnicity"
                 label="Ethnicité"
                 description="Sélectionner l'ethnicité du patient"
             />
             <TypeOptions
                 options={optionsDemoDetail.educationLevel}
-                option={educationLevel}
-                setOption={setEducationLevel}
-                idInput="educationLevel"
-                label="Niveau d'éducation"
+                option={formData.educationLevel}
+                setOption={setFormData}
+                inputId="educationLevel"
+                label="Niveau d'étude"
                 description="Sélectionner le niveau d'étude du patient"
             />
         </ContainerForm>

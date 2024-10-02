@@ -9,7 +9,7 @@ const TypeNum = ({num, setNum, inputId, label, description, min, max, step}) => 
             name={inputId} 
             id={inputId}
             value={num}
-            onChange={e => setNum(e.target.value)}
+            onChange={setNum}
             min={min}
             max={max}
             step={step} />

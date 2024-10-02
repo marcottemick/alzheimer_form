@@ -9,7 +9,7 @@ const TypeText = ({ text, setText, inputId, label, description }) => {
                 name={inputId}
                 id={inputId}
                 value={text}
-                onChange={e => setText(e.target.value)} />
+                onChange={setText} />
         </ContainerInput>
     );
 };

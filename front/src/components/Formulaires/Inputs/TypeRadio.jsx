@@ -7,20 +7,20 @@ const TypeRadio = ({ radio, setRadio, inputId, label, description }) => {
                 <div className="flex">
                     <input
                         type="radio"
-                        name="radioValue"
+                        name={inputId}
                         value="0"
                         checked={radio === "0"}
-                        onChange={e => setRadio(e.target.value)}
+                        onChange={setRadio}
                     />
                     <p className="ml-4">OUI</p>
                 </div>
                 <div className="flex">
                     <input
                         type="radio"
-                        name="radioValue"
+                        name={inputId}
                         value="1"
                         checked={radio === "1"}
-                        onChange={e => setRadio(e.target.value)}
+                        onChange={setRadio}
                     />
                     <p className="ml-4">NON</p>
                 </div>

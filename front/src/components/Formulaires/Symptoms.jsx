@@ -1,47 +1,41 @@
-import { useState } from "react";
 import ContainerForm from "./ContainerForm";
 import TypeRadio from "./Inputs/TypeRadio";
 
-const Symptoms = ({ title }) => {
-    const [confusion, setConfusion] = useState("");
-    const [disorientation, setDisorientation] = useState("");
-    const [personalityChanges, setPersonalityChanges] = useState("");
-    const [difficultyCompletingTasks, setDifficultyCompletingTasks] = useState("");
-    const [forgetfulness, setForgetfulness] = useState("");
+const Symptoms = ({ title, formData, setFormData }) => {
 
     return (
         <ContainerForm title={title}>
             <TypeRadio
-                radio={confusion}
-                setRadio={setConfusion}
+                radio={formData.confusion}
+                setRadio={setFormData}
                 inputId="confusion"
                 label="Confusion"
                 description="Présence de confusion chez le patient(e) ?"
             />
             <TypeRadio
-                radio={disorientation}
-                setRadio={setDisorientation}
+                radio={formData.disorientation}
+                setRadio={setFormData}
                 inputId="disorientation"
                 label="Désorientation"
                 description="Présence d'une perte d'orientation chez le patient(e) ?"
             />
             <TypeRadio
-                radio={personalityChanges}
-                setRadio={setPersonalityChanges}
+                radio={formData.personalityChanges}
+                setRadio={setFormData}
                 inputId="personalityChanges"
                 label="Changement de personnalité"
                 description="Présence d'un changement de personnalité chez le patient(e) ?"
             />
             <TypeRadio
-                radio={difficultyCompletingTasks}
-                setRadio={setDifficultyCompletingTasks}
+                radio={formData.difficultyCompletingTasks}
+                setRadio={setFormData}
                 inputId="difficultyCompletingTasks"
                 label="Difficulté à terminer une tâche"
                 description="Le patient(e) arrive-t'il à terminer une tâche ?"
             />
             <TypeRadio
-                radio={forgetfulness}
-                setRadio={setForgetfulness}
+                radio={formData.forgetfulness}
+                setRadio={setFormData}
                 inputId="forgetfulness"
                 label="Oubli"
                 description="Le patient(e) présente des oublis ?"
