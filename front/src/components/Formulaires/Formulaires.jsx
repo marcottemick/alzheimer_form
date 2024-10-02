@@ -8,26 +8,27 @@ import CognitiveAssessments from "./CognitiveAssessments";
 import Symptoms from "./Symptoms";
 import { useState } from "react";
 
-const Formulaires = ({ }) => {
-    const [form, setForm] = useState(0);
+const Formulaires = ({}) => {
+    const [currentPage, setCurrentPage] = useState(0);
 
+    /** Permet de change de page de formulaire
+     * @param {String} dir 
+     */
     const handleChangeElement = (dir) => {
         if (dir === 'back') {
-            setForm(prev => prev -= 1);
+            setCurrentPage(prev => prev -= 1);
         }
         else {
-            setForm(prev => prev += 1)
+            setCurrentPage(prev => prev += 1)
         }
-    }
-
-    console.log(form)
+    };
 
     return (
         <div
             className="flex overflow-x-hidden"
             style={{ height: 'calc(100vh - 80px)' }}>
             <div
-                onClick={() => {form > 0 && handleChangeElement("back")}}
+                onClick={() => {currentPage > 0 && handleChangeElement("back")}}
                 className="flex items-center"
                 style={{ marginLeft: -100 }}>
                 <Arrow>
@@ -35,27 +36,27 @@ const Formulaires = ({ }) => {
                 </Arrow>
             </div>
             <div className="w-11/12 flex justify-center items-center">
-                <div className={form === 0 ? "" : "hidden"}>
-                    <DemographicDetail />
+                <div className={currentPage === 0 ? "" : "hidden"}>
+                    <DemographicDetail title='Informations personnelles'/>
                 </div>
-                <div className={form === 1 ? "" : "hidden"}>
-                    <LifestyleFactors />
+                <div className={currentPage === 1 ? "" : "hidden"}>
+                    <LifestyleFactors title="Facteurs liés au style de vie"/>
                 </div>
-                <div className={form === 2 ? "" : "hidden"}>
-                    <MedicalHistory />
+                <div className={currentPage === 2 ? "" : "hidden"}>
+                    <MedicalHistory title="Antécédents familiaux"/>
                 </div>
-                <div className={form === 3 ? "" : "hidden"}>
-                    <ClinicalMeasurements />
+                <div className={currentPage === 3 ? "" : "hidden"}>
+                    <ClinicalMeasurements title="Analyses médicales"/>
                 </div>
-                <div className={form === 4 ? "" : "hidden"}>
-                    <CognitiveAssessments />
+                <div className={currentPage === 4 ? "" : "hidden"}>
+                    <CognitiveAssessments title="Tests cognitifs"/>
                 </div>
-                <div className={form === 5 ? "" : "hidden"}>
-                    <Symptoms />
+                <div className={currentPage === 5 ? "" : "hidden"}>
+                    <Symptoms title="Symptômes"/>
                 </div>
             </div>
             <div
-                onClick={() => {form < 5 && handleChangeElement("forward")}}
+                onClick={() => {currentPage < 5 && handleChangeElement("forward")}}
                 className="flex items-center"
                 style={{ marginRight: -100 }}>
                 <Arrow>

@@ -1,0 +1,1 @@
+export const keyInObject = (key, Obj) => key in Obj

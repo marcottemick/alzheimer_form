@@ -23,7 +23,7 @@ function App() {
           <header>
             <Header />
           </header>
-          <main>
+          <main className="bg-[url('/public/cartographer.png')] bg-repeat">
             <Routes>
               <Route exact path='/' element={<Formulaires />} />
             </Routes>
