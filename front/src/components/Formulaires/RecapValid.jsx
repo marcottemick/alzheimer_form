@@ -1,76 +1,9 @@
 import { fetchPostPredict } from "../../hooks/endpoints";
 import ContainerForm from "./ContainerForm"
+import { datasFormatForms } from "./datasFormatForm";
 import Recap from "./Recap";
 
-const RecapValid = ({ title, formData }) => {
-    const NonOuiOptions = { "0": "Non", "1": "Oui" }
-
-    const datasFormatForms = {
-        "DemographicDetail": {
-            "title": "Informations personnelles",
-            "details": {
-                "Name": { "name": "Nom", "unity": null, "options": false },
-                "FirstName": { "name": "Prénom", "unity": null, "options": false },
-                "Age": { "name": "Âge", "unity": null, "options": false },
-                "Gender": { "name": "Sexe", "unity": null, "options": true, "optionsEqual": { "0": "Homme", "1": "Femme" } },
-                "Ethnicity": { "name": "Ethnicité", "unity": null, "options": true, "optionsEqual": { "0": "Caucasien", "1": "Subsaharienne", "2": "Asiatique", "3": "Autre" } },
-                "EducationLevel": { "name": "Niv. d'étude", "unity": null, "options": true, "optionsEqual": { "0": "Collège", "1": "Lycée", "2": "bac+2/+3", "3": "sup à bac+3" } }
-            }
-        },
-        "LifestyleFactors": {
-            "title": "Facteurs liés au style de vie",
-            "details": {
-                "BMI": { "name": "IMC", "unity": null, "options": false },
-                "Smoking": { "name": "Tabagisme", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "AlcoholConsumption": { "name": "Alcoolémie", "unity": null, "options": false },
-                "PhysicalActivity": { "name": "Act. physique", "unity": "h", "options": false },
-                "DietQuality": { "name": "Qualité de l'alimentation", "unity": null, "options": false },
-                "SleepQuality": { "name": "Qualité du sommeil", "unity": null, "options": false },
-            }
-        },
-        "MedicalHistory": {
-            "title": "Antécédents familiaux",
-            "details": {
-                "FamilyHistoryAlzheimers": { "name": "Antécédent familiaux", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "CardiovascularDisease": { "name": "Antécédent cardiaque", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "Diabetes": { "name": "Diabète", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "Depression": { "name": "Dépression", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "HeadInjury": { "name": "Traumatisme cranien", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "Hypertension": { "name": "Hypertension", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-            }
-        },
-        "ClinicalMeasurements": {
-            "title": "Analyses médicales",
-            "details": {
-                "SystolicBP": { "name": "P. art. systolique", "unity": "mmHgh", "options": false },
-                "DiastolicBP": { "name": "P. art. diastolique", "unity": "mmHgh", "options": false },
-                "CholesterolTotal": { "name": "Taux de cholestérol tot.", "unity": "mg/dL", "options": false },
-                "CholesterolLDL": { "name": "Taux de cholestérol LDL", "unity": "mg/dL", "options": false },
-                "CholesterolHDL": { "name": "Taux de cholestérol HDL", "unity": "mg/dL", "options": false },
-                "CholesterolTriglycerides": { "name": "Taux de triglycérides", "unity": "mg/dL", "options": false },
-            }
-        },
-        "CognitiveAssessments": {
-            "title": "Tests cognitifs",
-            "details": {
-                "MMSE": { "name": "MMSE", "unity": null, "options": false },
-                "FunctionalAssessment": { "name": "Évaluation fonctionnelle", "unity": null, "options": false },
-                "MemoryComplaints": { "name": "Perte de mémoire", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "BehavioralProblems": { "name": "Prob. de comportement", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "ADL": { "name": "Act. de la vie quotidienne", "unity": null, "options": false },
-            }
-        },
-        "Symptoms": {
-            "title": "Symptômes",
-            "details": {
-                "Confusion": { "name": "Confusion", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "Disorientation": { "name": "Désorientation", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "PersonalityChanges": { "name": "Chang. de personnalité", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "DifficultyCompletingTasks": { "name": "Finir une tâches", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "Forgetfulness": { "name": "Oubli", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-            }
-        }
-    };
+const RecapValid = ({ title, formData }) => {  
 
     const handleSubmit = () => {
         let keyProblem = true;

@@ -1,13 +1,10 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Arrow from "./Arrow";
-import DemographicDetail from "./DemographicDetail";
-import LifestyleFactors from "./LifestyleFactors";
-import MedicalHistory from "./MedicalHistory";
-import ClinicalMeasurements from "./ClinicalMeasurements";
-import CognitiveAssessments from "./CognitiveAssessments";
-import Symptoms from "./Symptoms";
 import { useState } from "react";
 import RecapValid from "./RecapValid";
+import { datasFormatForms } from "./datasFormatForm";
+import ContainerForm from "./ContainerForm";
+import { inputSelect } from "../../utils";
 
 const Formulaires = ({ }) => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -30,7 +27,7 @@ const Formulaires = ({ }) => {
         "Depression": [""],
         "HeadInjury": [""],
         "Hypertension": [""],
-        "SystolicBP":[""],
+        "SystolicBP": [""],
         "DiastolicBP": [""],
         "CholesterolTotal": [""],
         "CholesterolLDL": [""],
@@ -60,6 +57,9 @@ const Formulaires = ({ }) => {
         }
     };
 
+    /** Actualise les valeurs dans formData
+     * @param {*} e 
+     */
     const handleChangeFormData = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -67,8 +67,6 @@ const Formulaires = ({ }) => {
             [name]: [value]
         }));
     };
-
-    console.log(formData)
 
     return (
         <div
@@ -82,48 +80,23 @@ const Formulaires = ({ }) => {
                     <IoIosArrowBack style={{ fontSize: 150, marginLeft: 70 }} />
                 </Arrow>
             </div>
+            
             <div className="w-11/12 flex justify-center items-center">
-                <div className={currentPage === 0 ? "" : "hidden"}>
-                    <DemographicDetail
-                        title='Informations personnelles'
-                        formData={formData}
-                        setFormData={handleChangeFormData} />
+                {Object.keys(datasFormatForms).map((page, idPage) =>
+                <div className={currentPage === idPage ? "" : "hidden"}>
+                    <ContainerForm title={datasFormatForms[page].title}>
+                        {Object.keys(datasFormatForms[page].details).map(input =>
+                            <div key={input}>
+                                {inputSelect(input, datasFormatForms[page].details[input], formData, handleChangeFormData)}
+                            </div>
+                        )}
+                    </ContainerForm>                    
                 </div>
-                <div className={currentPage === 1 ? "" : "hidden"}>
-                    <LifestyleFactors
-                        title="Facteurs liés au style de vie"
-                        formData={formData}
-                        setFormData={handleChangeFormData} />
-                </div>
-                <div className={currentPage === 2 ? "" : "hidden"}>
-                    <MedicalHistory
-                        title="Antécédents familiaux"
-                        formData={formData}
-                        setFormData={handleChangeFormData} />
-                </div>
-                <div className={currentPage === 3 ? "" : "hidden"}>
-                    <ClinicalMeasurements
-                        title="Analyses médicales"
-                        formData={formData}
-                        setFormData={handleChangeFormData} />
-                </div>
-                <div className={currentPage === 4 ? "" : "hidden"}>
-                    <CognitiveAssessments
-                        title="Tests cognitifs"
-                        formData={formData}
-                        setFormData={handleChangeFormData} />
-                </div>
-                <div className={currentPage === 5 ? "" : "hidden"}>
-                    <Symptoms
-                        title="Symptômes"
-                        formData={formData}
-                        setFormData={handleChangeFormData} />
-                </div>
+                )}                
                 <div className={currentPage === 6 ? "" : "hidden"}>
                     <RecapValid
                         title="Récapitulation des informations"
-                        formData={formData}
-                    />
+                        formData={formData} />
                 </div>
             </div>
             <div

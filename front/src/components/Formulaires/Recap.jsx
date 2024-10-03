@@ -3,8 +3,10 @@ import RecapContainer from "./ContainerRecap";
 const Recap = ({ dataSelect, formData, title }) => {
 
     const unknownValue = (key, value) => {
-        let changeValue = value === "" ? "Pas de valeur" : value
-        changeValue = dataSelect[key].options && changeValue !== "Pas de valeur" ? dataSelect[key].optionsEqual[value] : changeValue
+        console.log(key, value)
+        console.log(dataSelect[key].type)
+        let changeValue = value[0] === "" ? "Pas de valeur" : value[0]
+        changeValue = dataSelect[key].type === "options" && changeValue !== "Pas de valeur" ? dataSelect[key].optionsEqual[changeValue] : changeValue
         changeValue = changeValue !== "Pas de valeur" && dataSelect[key].unity !== null ? changeValue + dataSelect[key].unity : changeValue
         return changeValue
     };
