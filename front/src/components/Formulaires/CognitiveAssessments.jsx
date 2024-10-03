@@ -14,23 +14,23 @@ const CognitiveAssessments = ({ title, formData, setFormData }) => {
                 description="score du Mini-Mental State Examination, compris entre 0 et 30"
             />
             <TypeNum
-                num={formData.functionalAssessment}
+                num={formData.FunctionalAssessment}
                 setNum={setFormData}
-                inputId="functionalAssessment"
+                inputId="FunctionalAssessment"
                 label="Évaluation fonctionnelle"
                 description="Score d’évaluation fonctionnelle, allant de 0 à 10"
             />
             <TypeRadio
-                radio={formData.memoryComplaints}
+                radio={formData.MemoryComplaints}
                 setRadio={setFormData}
-                inputId="memoryComplaints"
+                inputId="MemoryComplaints"
                 label="Perte de mémoire"
                 description="Indiquer la perte de mémoire chez le patient(e)"
             />
             <TypeRadio
-                radio={formData.behavioralProblems}
+                radio={formData.BehavioralProblems}
                 setRadio={setFormData}
-                inputId="behavioralProblems"
+                inputId="BehavioralProblems"
                 label="Problèmes de comportement"
                 description="Indiquer la présence de problèmes de comportementchez le patient(e)"
             />

@@ -8,42 +8,81 @@ import os
 app = FastAPI()
 
 class HealthData(BaseModel):
-    Age: List[int]
-    Gender: List[int]
-    Ethnicity: List[int]
-    EducationLevel: List[int]
-    BMI: List[float]
-    Smoking: List[int]
-    AlcoholConsumption: List[float]
-    PhysicalActivity: List[float]
-    DietQuality: List[float]
-    SleepQuality: List[float]
-    FamilyHistoryAlzheimers: List[int]
-    CardiovascularDisease: List[int]
-    Diabetes: List[int]
-    Depression: List[int]
-    HeadInjury: List[int]
-    Hypertension: List[int]
-    SystolicBP: List[int]
-    DiastolicBP: List[int]
-    CholesterolTotal: List[float]
-    CholesterolLDL: List[float]
-    CholesterolHDL: List[float]
-    CholesterolTriglycerides: List[float]
-    MMSE: List[float]
-    FunctionalAssessment: List[float]
-    MemoryComplaints: List[int]
-    BehavioralProblems: List[int]
-    ADL: List[float]
-    Confusion: List[int]
-    Disorientation: List[int]
-    PersonalityChanges: List[int]
-    DifficultyCompletingTasks: List[int]
-    Forgetfulness: List[int]
+    FirstName: List[str]
+    Name: List[str]
+    Age: List[str]
+    Gender: List[str]
+    Ethnicity: List[str]
+    EducationLevel: List[str]
+    BMI: List[str]
+    Smoking: List[str]
+    AlcoholConsumption: List[str]
+    PhysicalActivity: List[str]
+    DietQuality: List[str]
+    SleepQuality: List[str]
+    FamilyHistoryAlzheimers: List[str]
+    CardiovascularDisease: List[str]
+    Diabetes: List[str]
+    Depression: List[str]
+    HeadInjury: List[str]
+    Hypertension: List[str]
+    SystolicBP: List[str]
+    DiastolicBP: List[str]
+    CholesterolTotal: List[str]
+    CholesterolLDL: List[str]
+    CholesterolHDL: List[str]
+    CholesterolTriglycerides: List[str]
+    MMSE: List[str]
+    FunctionalAssessment: List[str]
+    MemoryComplaints: List[str]
+    BehavioralProblems: List[str]
+    ADL: List[str]
+    Confusion: List[str]
+    Disorientation: List[str]
+    PersonalityChanges: List[str]
+    DifficultyCompletingTasks: List[str]
+    Forgetfulness: List[str]
 
 class PredictionResponse(BaseModel):
     predict: int  # Liste des prédictions
-    confidence: float    # Pourcentage de confiance
+    confidence: "float"    # Pourcentage de confiance
+
+dtypes = {
+    "FirstName": "str",
+    "Name": "str",
+    "Age": "int",
+    "Gender": "int",
+    "Ethnicity": "int",
+    "EducationLevel": "int",
+    "BMI": "float",
+    "Smoking": "int",
+    "AlcoholConsumption": "float",
+    "PhysicalActivity": "float",
+    "DietQuality": "float",
+    "SleepQuality": "float",
+    "FamilyHistoryAlzheimers": "int",
+    "CardiovascularDisease": "int",
+    "Diabetes": "int",
+    "Depression": "int",
+    "HeadInjury": "int",
+    "Hypertension": "int",
+    "SystolicBP": "int",
+    "DiastolicBP": "int",
+    "CholesterolTotal": "float",
+    "CholesterolLDL": "float",
+    "CholesterolHDL": "float",
+    "CholesterolTriglycerides": "float",
+    "MMSE": "float",
+    "FunctionalAssessment": "float",
+    "MemoryComplaints": "int",
+    "BehavioralProblems": "int",
+    "ADL": "float",
+    "Confusion": "int",
+    "Disorientation": "int",
+    "PersonalityChanges": "int",
+    "DifficultyCompletingTasks": "int",
+    "Forgetfulness": "int",
+}
 
 @app.get("/connexion")
 def get_connexion():
@@ -51,10 +90,13 @@ def get_connexion():
 
 @app.post("/predict", response_model=PredictionResponse)
 def put_form(form: HealthData):
+    global dtypes
     base_dir = os.path.dirname(os.path.abspath(__file__))
     road_model = os.path.join(base_dir, 'decision_tree.joblib')
     loaded_model = joblib.load(road_model)
     df_form = pd.DataFrame(data=form.dict())
+    df_form = df_form.astype(dtypes)
+    df_form = df_form.drop(columns=["FirstName", "Name"])
 
     y_new_pred = loaded_model.predict_proba(df_form)
     confidence_scores = y_new_pred.max(axis=1)

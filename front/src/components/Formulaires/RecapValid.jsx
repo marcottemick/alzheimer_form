@@ -1,89 +1,117 @@
+import { fetchPostPredict } from "../../hooks/endpoints";
 import ContainerForm from "./ContainerForm"
 import Recap from "./Recap";
 
 const RecapValid = ({ title, formData }) => {
-    console.log(formData)
-
     const NonOuiOptions = { "0": "Non", "1": "Oui" }
 
     const datasFormatForms = {
         "DemographicDetail": {
             "title": "Informations personnelles",
             "details": {
-                "name": { "name": "Nom", "unity": null, "options": false },
-                "firstName": { "name": "Prénom", "unity": null, "options": false },
-                "age": { "name": "Âge", "unity": null, "options": false },
-                "gender": { "name": "Sexe", "unity": null, "options": true, "optionsEqual": { "0": "Homme", "1": "Femme" } },
-                "ethnicity": { "name": "Ethnicité", "unity": null, "options": true, "optionsEqual": { "0": "Caucasien", "1": "Subsaharienne", "2": "Asiatique", "3": "Autre" } },
-                "educationLevel": { "name": "Niv. d'étude", "unity": null, "options": true, "optionsEqual": { "0": "Collège", "1": "Lycée", "2": "bac+2/+3", "3": "sup à bac+3" } }
+                "Name": { "name": "Nom", "unity": null, "options": false },
+                "FirstName": { "name": "Prénom", "unity": null, "options": false },
+                "Age": { "name": "Âge", "unity": null, "options": false },
+                "Gender": { "name": "Sexe", "unity": null, "options": true, "optionsEqual": { "0": "Homme", "1": "Femme" } },
+                "Ethnicity": { "name": "Ethnicité", "unity": null, "options": true, "optionsEqual": { "0": "Caucasien", "1": "Subsaharienne", "2": "Asiatique", "3": "Autre" } },
+                "EducationLevel": { "name": "Niv. d'étude", "unity": null, "options": true, "optionsEqual": { "0": "Collège", "1": "Lycée", "2": "bac+2/+3", "3": "sup à bac+3" } }
             }
         },
         "LifestyleFactors": {
             "title": "Facteurs liés au style de vie",
             "details": {
                 "BMI": { "name": "IMC", "unity": null, "options": false },
-                "smoking": { "name": "Tabagisme", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "alcohol": { "name": "Alcoolémie", "unity": null, "options": false },
+                "Smoking": { "name": "Tabagisme", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "AlcoholConsumption": { "name": "Alcoolémie", "unity": null, "options": false },
                 "PhysicalActivity": { "name": "Act. physique", "unity": "h", "options": false },
-                "dietQuality": { "name": "Qualité de l'alimentation", "unity": null, "options": false },
-                "sleepQuality": { "name": "Qualité du sommeil", "unity": null, "options": false },
+                "DietQuality": { "name": "Qualité de l'alimentation", "unity": null, "options": false },
+                "SleepQuality": { "name": "Qualité du sommeil", "unity": null, "options": false },
             }
         },
         "MedicalHistory": {
             "title": "Antécédents familiaux",
             "details": {
-                "familyHistoryAlzheimers": { "name": "Antécédent familiaux", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "cardiovascularDisease": { "name": "Antécédent cardiaque", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "diabete": { "name": "Diabète", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "depression": { "name": "Dépression", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "headInjury": { "name": "Traumatisme cranien", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "hypertension": { "name": "Hypertension", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "FamilyHistoryAlzheimers": { "name": "Antécédent familiaux", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "CardiovascularDisease": { "name": "Antécédent cardiaque", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "Diabetes": { "name": "Diabète", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "Depression": { "name": "Dépression", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "HeadInjury": { "name": "Traumatisme cranien", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "Hypertension": { "name": "Hypertension", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
             }
         },
         "ClinicalMeasurements": {
             "title": "Analyses médicales",
             "details": {
-                "systolicBP": { "name": "P. art. systolique", "unity": "mmHgh", "options": false },
-                "diastolicBP": { "name": "P. art. diastolique", "unity": "mmHgh", "options": false },
-                "cholesterolTotal": { "name": "Taux de cholestérol tot.", "unity": "mg/dL", "options": false },
-                "cholesterolLDL": { "name": "Taux de cholestérol LDL", "unity": "mg/dL", "options": false },
-                "cholesterolHDL": { "name": "Taux de cholestérol HDL", "unity": "mg/dL", "options": false },
-                "cholesterolTriglycerides": { "name": "Taux de triglycérides", "unity": "mg/dL", "options": false },
+                "SystolicBP": { "name": "P. art. systolique", "unity": "mmHgh", "options": false },
+                "DiastolicBP": { "name": "P. art. diastolique", "unity": "mmHgh", "options": false },
+                "CholesterolTotal": { "name": "Taux de cholestérol tot.", "unity": "mg/dL", "options": false },
+                "CholesterolLDL": { "name": "Taux de cholestérol LDL", "unity": "mg/dL", "options": false },
+                "CholesterolHDL": { "name": "Taux de cholestérol HDL", "unity": "mg/dL", "options": false },
+                "CholesterolTriglycerides": { "name": "Taux de triglycérides", "unity": "mg/dL", "options": false },
             }
         },
         "CognitiveAssessments": {
             "title": "Tests cognitifs",
             "details": {
                 "MMSE": { "name": "MMSE", "unity": null, "options": false },
-                "functionalAssessment": { "name": "Évaluation fonctionnelle", "unity": null, "options": false },
-                "memoryComplaints": { "name": "Perte de mémoire", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "behavioralProblems": { "name": "Prob. de comportement", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "FunctionalAssessment": { "name": "Évaluation fonctionnelle", "unity": null, "options": false },
+                "MemoryComplaints": { "name": "Perte de mémoire", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "BehavioralProblems": { "name": "Prob. de comportement", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
                 "ADL": { "name": "Act. de la vie quotidienne", "unity": null, "options": false },
             }
         },
         "Symptoms": {
             "title": "Symptômes",
             "details": {
-                "confusion": { "name": "Confusion", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "disorientation": { "name": "Désorientation", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "personalityChanges": { "name": "Chang. de personnalité", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "difficultyCompletingTasks": { "name": "Finir une tâches", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
-                "forgetfulness": { "name": "Oubli", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "Confusion": { "name": "Confusion", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "Disorientation": { "name": "Désorientation", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "PersonalityChanges": { "name": "Chang. de personnalité", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "DifficultyCompletingTasks": { "name": "Finir une tâches", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
+                "Forgetfulness": { "name": "Oubli", "unity": null, "options": true, "optionsEqual": NonOuiOptions },
             }
         }
     };
 
+    const handleSubmit = () => {
+        let keyProblem = true;
+        for(let key in formData) {
+            if(formData[key].length === 0) {
+                keyProblem = false
+                break
+            } 
+        }
+        if(keyProblem) {
+            const obj = JSON.stringify(formData)
+            console.log(obj)
+            fetchPostPredict(obj).then(response => console.log(response));
+        }
+        else {
+            console.log('Présence de valeur(s) non renseignée(s)')
+        }
+    }
+
     return (
         <ContainerForm title={title}>
-            {Object.keys(datasFormatForms).map(key =>
-                <div key={key}>
-                    <Recap        
-                    title = {datasFormatForms[key].title}
-                        dataSelect={datasFormatForms[key].details}
-                        formData={formData}
-                    />
+            <div className="flex flex-col content-between h-full">
+                <div className="flex justify-around items-center flex-wrap my-12">
+                    {Object.keys(datasFormatForms).map(key =>
+                        <div key={key}>
+                            <Recap
+                                title={datasFormatForms[key].title}
+                                dataSelect={datasFormatForms[key].details}
+                                formData={formData}
+                            />
+                        </div>
+                    )}
                 </div>
-            )}
+                <div className="bg-blue-400 w-full rounded-b-md h-20 flex justify-center items-center">
+                    <div
+                        onClick={handleSubmit}
+                        className="bg-gray-200 w-fit px-4 py-2 rounded-md transition transform hover:-translate-y-1 hover:shadow-lg hover:shadow-gray-500 cursor-pointer">
+                        Analyser
+                    </div>
+                </div>
+            </div>
         </ContainerForm>
     );
 };

@@ -6,44 +6,44 @@ const MedicalHistory = ({title, formData, setFormData}) => {
     return (
         <ContainerForm title={title}>
             <TypeRadio
-                radio={formData.familyHistoryAlzheimers}
+                radio={formData.FamilyHistoryAlzheimers}
                 setRadio={setFormData}
-                inputId="familyHistoryAlzheimers"
+                inputId="FamilyHistoryAlzheimers"
                 label="Antécédent familiaux"
                 description="Présence de cas dans la famille ?"
             />
              <TypeRadio
-                radio={formData.cardiovascularDisease}
+                radio={formData.CardiovascularDisease}
                 setRadio={setFormData}
-                inputId="cardiovascularDisease"
+                inputId="CardiovascularDisease"
                 label="Antécédent cardiaque"
                 description="Antécédent de maladie cardiaque chez le patient(e) ?"
             />
              <TypeRadio
-                radio={formData.diabete}
+                radio={formData.Diabetes}
                 setRadio={setFormData}
-                inputId="diabete"
+                inputId="Diabetes"
                 label="Antécédent de diabète"
                 description="Antécédent de diabète chez le patient(e) ?"
             />
              <TypeRadio
-                radio={formData.depression}
+                radio={formData.Depression}
                 setRadio={setFormData}
-                inputId="depression"
+                inputId="Depression"
                 label="Antécédent de dépression"
                 description="Antécédent de dépression chez le patient(e) ?"
             />
              <TypeRadio
-                radio={formData.headInjury}
+                radio={formData.HeadInjury}
                 setRadio={setFormData}
-                inputId="headInjury"
+                inputId="HeadInjury"
                 label="Antécédent de traumatisme cranien"
                 description="Antécédent de traumatisme cranien chez le patient(e) ?"
             />
              <TypeRadio
-                radio={formData.hypertension}
+                radio={formData.Hypertension}
                 setRadio={setFormData}
-                inputId="hypertension"
+                inputId="Hypertension"
                 label="Antécédent d'hypertension"
                 description="Antécédent d'hypertension chez le patient(e) ?"
             />            

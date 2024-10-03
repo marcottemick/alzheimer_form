@@ -8,7 +8,7 @@ const TypeText = ({ text, setText, inputId, label, description }) => {
                 type="text"
                 name={inputId}
                 id={inputId}
-                value={text}
+                value={text[0]}
                 onChange={setText} />
         </ContainerInput>
     );

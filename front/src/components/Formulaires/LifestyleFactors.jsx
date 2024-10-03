@@ -16,16 +16,16 @@ const LifestyleFactors = ({ title, formData, setFormData }) => {
                 description="Indiquer l'indice de masse corporel du patient"
             />
             <TypeRadio
-                radio={formData.smoking}
+                radio={formData.Smoking}
                 setRadio={setFormData}
-                inputId="smoking"
+                inputId="Smoking"
                 label="Tabagisme"
                 description="Sélectionner si le patient fume (oui ou non)"
             />
             <TypeNum
-                num={formData.alcohol}
+                num={formData.AlcoholConsumption}
                 setNum={setFormData}
-                inputId="alcohol"
+                inputId="AlcoholConsumption"
                 label="Alcoolémie"
                 min={0}
                 max={20}
@@ -33,9 +33,9 @@ const LifestyleFactors = ({ title, formData, setFormData }) => {
                 description="Indiquer le volume d'alcool consommé par semaine"
             />
             <TypeNum
-                num={formData.physicalAct}
+                num={formData.PhysicalActivity}
                 setNum={setFormData}
-                inputId="physicalAct"
+                inputId="PhysicalActivity"
                 label="Activité physique"
                 min={0}
                 max={10}
@@ -43,9 +43,9 @@ const LifestyleFactors = ({ title, formData, setFormData }) => {
                 description="Indiquer le nombre d'heure d'activité physique entre 0 et 10"
             />
             <TypeNum
-                num={formData.dietQuality}
+                num={formData.DietQuality}
                 setNum={setFormData}
-                inputId="dietQuality"
+                inputId="DietQuality"
                 label="Qualité de l'alimentation"
                 min={0}
                 max={10}
@@ -53,9 +53,9 @@ const LifestyleFactors = ({ title, formData, setFormData }) => {
                 description="Indiquer le score de qualité de l'alimentation entre 0 et 10"
             />
             <TypeNum
-                num={formData.sleepQuality}
+                num={formData.SleepQuality}
                 setNum={setFormData}
-                inputId="sleepQuality"
+                inputId="SleepQuality"
                 label="Qualité du sommeil"
                 min={4}
                 max={10}

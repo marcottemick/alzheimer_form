@@ -12,40 +12,40 @@ import RecapValid from "./RecapValid";
 const Formulaires = ({ }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [formData, setFormData] = useState({
-        "firstName": "",
-        "name": "",
-        "gender": "",
-        "age": "",
-        "ethnicity": "",
-        "educationLevel": "",
-        "BMI": "",
-        "smoking": "",
-        "alcohol": "",
-        "PhysicalActivity": "",
-        "dietQuality": "",
-        "sleepQuality": "",
-        "familyHistoryAlzheimers": "",
-        "cardiovascularDisease": "",
-        "diabete": "",
-        "depression": "",
-        "headInjury": "",
-        "hypertension": "",
-        "systolicBP":"",
-        "diastolicBP": "",
-        "cholesterolTotal": "",
-        "cholesterolLDL": "",
-        "cholesterolHDL": "",
-        "cholesterolTriglycerides": "",
-        "MMSE": "",
-        "functionalAssessment": "",
-        "memoryComplaints": "",
-        "behavioralProblems": "",
-        "ADL": "",
-        "confusion": "",
-        "disorientation": "",
-        "personalityChanges": "",
-        "difficultyCompletingTasks": "",
-        "forgetfulness": ""
+        "FirstName": [""],
+        "Name": [""],
+        "Gender": [""],
+        "Age": [""],
+        "Ethnicity": [""],
+        "EducationLevel": [""],
+        "BMI": [""],
+        "Smoking": [""],
+        "AlcoholConsumption": [""],
+        "PhysicalActivity": [""],
+        "DietQuality": [""],
+        "SleepQuality": [""],
+        "FamilyHistoryAlzheimers": [""],
+        "CardiovascularDisease": [""],
+        "Diabetes": [""],
+        "Depression": [""],
+        "HeadInjury": [""],
+        "Hypertension": [""],
+        "SystolicBP":[""],
+        "DiastolicBP": [""],
+        "CholesterolTotal": [""],
+        "CholesterolLDL": [""],
+        "CholesterolHDL": [""],
+        "CholesterolTriglycerides": [""],
+        "MMSE": [""],
+        "FunctionalAssessment": [""],
+        "MemoryComplaints": [""],
+        "BehavioralProblems": [""],
+        "ADL": [""],
+        "Confusion": [""],
+        "Disorientation": [""],
+        "PersonalityChanges": [""],
+        "DifficultyCompletingTasks": [""],
+        "Forgetfulness": [""]
     })
 
     /** Permet de change de page de formulaire
@@ -64,9 +64,11 @@ const Formulaires = ({ }) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
-            [name]: value
+            [name]: [value]
         }));
     };
+
+    console.log(formData)
 
     return (
         <div

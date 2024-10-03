@@ -6,37 +6,37 @@ const Symptoms = ({ title, formData, setFormData }) => {
     return (
         <ContainerForm title={title}>
             <TypeRadio
-                radio={formData.confusion}
+                radio={formData.Confusion}
                 setRadio={setFormData}
-                inputId="confusion"
+                inputId="Confusion"
                 label="Confusion"
                 description="Présence de confusion chez le patient(e) ?"
             />
             <TypeRadio
-                radio={formData.disorientation}
+                radio={formData.Disorientation}
                 setRadio={setFormData}
-                inputId="disorientation"
+                inputId="Disorientation"
                 label="Désorientation"
                 description="Présence d'une perte d'orientation chez le patient(e) ?"
             />
             <TypeRadio
-                radio={formData.personalityChanges}
+                radio={formData.PersonalityChanges}
                 setRadio={setFormData}
-                inputId="personalityChanges"
+                inputId="PersonalityChanges"
                 label="Changement de personnalité"
                 description="Présence d'un changement de personnalité chez le patient(e) ?"
             />
             <TypeRadio
-                radio={formData.difficultyCompletingTasks}
+                radio={formData.DifficultyCompletingTasks}
                 setRadio={setFormData}
-                inputId="difficultyCompletingTasks"
+                inputId="DifficultyCompletingTasks"
                 label="Difficulté à terminer une tâche"
                 description="Le patient(e) arrive-t'il à terminer une tâche ?"
             />
             <TypeRadio
-                radio={formData.forgetfulness}
+                radio={formData.Forgetfulness}
                 setRadio={setFormData}
-                inputId="forgetfulness"
+                inputId="Forgetfulness"
                 label="Oubli"
                 description="Le patient(e) présente des oublis ?"
             />

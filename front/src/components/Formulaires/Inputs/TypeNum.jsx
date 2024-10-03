@@ -8,7 +8,7 @@ const TypeNum = ({num, setNum, inputId, label, description, min, max, step}) => 
             type="number" 
             name={inputId} 
             id={inputId}
-            value={num}
+            value={num[0]}
             onChange={setNum}
             min={min}
             max={max}

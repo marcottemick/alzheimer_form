@@ -6,31 +6,31 @@ import TypeOptions from "./Inputs/TypeOptions";
 const DemographicDetail = ({ title, formData, setFormData }) => {
 
     const optionsDemoDetail = {
-        "gender": [{ "0": "Homme" }, { "1": "Femme" }],
-        "ethnicity": [{ "0": "Caucasien" }, { "1": "Subsaharienne" }, { "2": "Asiatique" }, { "3": "Autre" }],
-        "educationLevel": [{ "0": "Collège" }, { "1": "Lycée" }, { "2": "bac+2/+3" }, { "3": "sup à bac+3" }]
+        "Gender": [{ "0": "Homme" }, { "1": "Femme" }],
+        "Ethnicity": [{ "0": "Caucasien" }, { "1": "Subsaharienne" }, { "2": "Asiatique" }, { "3": "Autre" }],
+        "EducationLevel": [{ "0": "Collège" }, { "1": "Lycée" }, { "2": "bac+2/+3" }, { "3": "sup à bac+3" }]
     }
 
     return (
         <ContainerForm title={title}>
             <TypeText
-                text={formData.firstName}
+                text={formData.FirstName}
                 setText={setFormData}
-                inputId="firstName"
+                inputId="FirstName"
                 label="Prénom"
                 description="Indiquer le prénom du patient"
             />
             <TypeText
-                text={formData.name}
+                text={formData.Name}
                 setText={setFormData}
-                inputId="name"
+                inputId="Name"
                 label="Nom"
                 description="Indiquer le nom du patient"
             />
             <TypeNum
-                num={formData.age}
+                num={formData.Age}
                 setNum={setFormData}
-                inputId="age"
+                inputId="Age"
                 label="Âge"
                 min={60}
                 max={90}
@@ -38,26 +38,26 @@ const DemographicDetail = ({ title, formData, setFormData }) => {
                 description="Indiquer l'âge du patient"
             />
             <TypeOptions
-                options={optionsDemoDetail.gender}
-                option={formData.gender}
+                options={optionsDemoDetail.Gender}
+                option={formData.Gender}
                 setOption={setFormData}
-                inputId="gender"
+                inputId="Gender"
                 label="Sexe"
                 description="Indiquer le sexe du patient"
             />
             <TypeOptions
-                options={optionsDemoDetail.ethnicity}
-                option={formData.ethnicity}
+                options={optionsDemoDetail.Ethnicity}
+                option={formData.Ethnicity}
                 setOption={setFormData}
-                inputId="ethnicity"
+                inputId="Ethnicity"
                 label="Ethnicité"
                 description="Sélectionner l'ethnicité du patient"
             />
             <TypeOptions
-                options={optionsDemoDetail.educationLevel}
-                option={formData.educationLevel}
+                options={optionsDemoDetail.EducationLevel}
+                option={formData.EducationLevel}
                 setOption={setFormData}
-                inputId="educationLevel"
+                inputId="EducationLevel"
                 label="Niveau d'étude"
                 description="Sélectionner le niveau d'étude du patient"
             />
