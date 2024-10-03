@@ -1,4 +1,4 @@
-export const NonOuiOptions = { "0": "Non", "1": "Oui" }
+const NonOuiOptions = { "0": "Non", "1": "Oui" }
 
 export const datasFormatForms = {
     "DemographicDetail": {
@@ -29,7 +29,7 @@ export const datasFormatForms = {
                 "max": 90,
                 "step": 1,
                 "label": "Âge",
-                "description": "Indiquer l'âge' du patient(e)"
+                "description": "Indiquer l'âge du patient(e)"
             },
             "Gender": {
                 "name": "Sexe",
@@ -44,7 +44,7 @@ export const datasFormatForms = {
                 "name": "Ethnicité",
                 "unity": null,
                 "options": true,
-                "optionsEqual": { "0": "Caucasien", "1": "Subsaharienne", "2": "Asiatique", "3": "Autre" }, 
+                "optionsEqual": { "0": "Caucasien", "1": "Subsaharienne", "2": "Asiatique", "3": "Autre" },
                 "type": "options",
                 "label": "Ethnicité",
                 "description": "Sélectionner l'ethnicité du patient"
@@ -69,7 +69,7 @@ export const datasFormatForms = {
                 "options": false,
                 "type": "num",
                 "min": 15,
-                "max":40,
+                "max": 40,
                 "step": 0.01,
                 "label": "IMC",
                 "description": "Indiquer l'indice de masse corporel du patient"
@@ -179,7 +179,7 @@ export const datasFormatForms = {
                 "optionsEqual": NonOuiOptions,
                 "type": "radio",
                 "label": "Antécédent d'hypertension",
-                "description":"Antécédent d'hypertension chez le patient(e) ?"
+                "description": "Antécédent d'hypertension chez le patient(e) ?"
             },
         }
     },
@@ -265,7 +265,7 @@ export const datasFormatForms = {
                 "min": 0,
                 "max": 30,
                 "step": 1,
-                "label": "MMSE", 
+                "label": "MMSE",
                 "description": "Score du Mini-Mental State Examination, compris entre 0 et 30",
             },
             "FunctionalAssessment": {

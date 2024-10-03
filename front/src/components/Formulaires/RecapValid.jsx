@@ -3,7 +3,7 @@ import ContainerForm from "./ContainerForm"
 import { datasFormatForms } from "./datasFormatForm";
 import Recap from "./Recap";
 
-const RecapValid = ({ title, formData }) => {  
+const RecapValid = ({ title, formData, setPredict }) => {  
 
     const handleSubmit = () => {
         let keyProblem = true;
@@ -15,8 +15,7 @@ const RecapValid = ({ title, formData }) => {
         }
         if(keyProblem) {
             const obj = JSON.stringify(formData)
-            console.log(obj)
-            fetchPostPredict(obj).then(response => console.log(response));
+            fetchPostPredict(obj).then(response => setPredict(response));
         }
         else {
             console.log('Présence de valeur(s) non renseignée(s)')

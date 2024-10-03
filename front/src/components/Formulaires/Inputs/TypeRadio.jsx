@@ -12,7 +12,7 @@ const TypeRadio = ({ radio, setRadio, inputId, label, description }) => {
                         checked={radio[0] === "0"}
                         onChange={setRadio}
                     />
-                    <p className="ml-4">OUI</p>
+                    <p className="ml-4">NON</p>
                 </div>
                 <div className="flex">
                     <input
@@ -22,7 +22,7 @@ const TypeRadio = ({ radio, setRadio, inputId, label, description }) => {
                         checked={radio[0] === "1"}
                         onChange={setRadio}
                     />
-                    <p className="ml-4">NON</p>
+                    <p className="ml-4">OUI</p>
                 </div>
             </div>
         </ContainerInput>

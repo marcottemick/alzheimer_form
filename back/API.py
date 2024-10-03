@@ -102,8 +102,8 @@ def put_form(form: HealthData):
     confidence_scores = y_new_pred.max(axis=1)
 
     response = {
-        'predict': y_new_pred[0].argmax(),  # Indice de la classe prédite
-        'confidence': confidence_scores[0]   # Score de confiance pour la première prédiction
+        'predict': y_new_pred[0].argmax(), # Indice de la classe prédite
+        'confidence': round(confidence_scores[0] * 100, 2) # Score de confiance pour la première prédiction
     }
 
     return response
