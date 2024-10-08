@@ -8,7 +8,7 @@ const RecapValid = ({ title, formData, setPredict }) => {
     const handleSubmit = () => {
         let keyProblem = true;
         for(let key in formData) {
-            if(formData[key].length === 0) {
+            if(formData[key][0] === "") {
                 keyProblem = false
                 break
             } 
