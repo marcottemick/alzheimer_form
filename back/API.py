@@ -35,6 +35,7 @@ def get_connexion():
 @app.post("/predict", response_model=PredictionResponse)
 def put_form(form: HealthData):
     global dtypes
+    global current_os
     base_dir = os.path.dirname(os.path.abspath(__file__))
     road_model = os.path.join(base_dir, 'decision_tree.joblib')
     loaded_model = joblib.load(road_model)
@@ -53,8 +54,9 @@ def put_form(form: HealthData):
         "Form": df_form.to_dict(orient= "records")[0]
     }
 
-    json_data_predict = json.loads(json.dumps(response, default=json_util.default))
-    collection.insert_one(json_data_predict)
+    if current_os == "nt":
+        json_data_predict = json.loads(json.dumps(response, default=json_util.default))
+        collection.insert_one(json_data_predict)
 
     return response
 
