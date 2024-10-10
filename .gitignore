@@ -5,3 +5,5 @@ cognitive
 questions
 tpot_best_pipeline.py
 front/node_modules
+.env
+back/_pycache_
