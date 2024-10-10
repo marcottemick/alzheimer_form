@@ -14,12 +14,12 @@ if current_os == "nt":
     load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'))
 
 # Récupérer les informations de connexion à partir des variables d'environnement
-MONGO_USERNAME = os.getenv("MONGO_USERNAME")
-MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
-MONGO_HOST = os.getenv("MONGO_HOST")
-MONGO_PORT = os.getenv("MONGO_PORT")
-MONGO_DB = os.getenv("MONGO_DB")
-MONGO_COL = os.getenv("MONGO_COL")
+MONGO_USERNAME = os.getenv("MONGO_USERNAME", "test")
+MONGO_PASSWORD = os.getenv("MONGO_PASSWORD", "test")
+MONGO_HOST = os.getenv("MONGO_HOST", "localhost")
+MONGO_PORT = os.getenv("MONGO_PORT", "4000")
+MONGO_DB = os.getenv("MONGO_DB", "db_test")
+MONGO_COL = os.getenv("MONGO_COL", "db_test")
 
 # connection à la base de donnée en mongoDB
 CONNECTION_STRING = "mongodb://{}:{}@{}:{}/".format(MONGO_USERNAME, MONGO_PASSWORD, MONGO_HOST, MONGO_PORT)
