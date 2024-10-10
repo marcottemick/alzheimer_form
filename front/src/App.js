@@ -13,7 +13,7 @@ function App() {
     fetchGetConnexion()
       .then(response => {
         response.response ? setConnexionFail(false) : setConnexionFail(true);
-      })
+      });
   }, [])
 
   const renderApp = () => {

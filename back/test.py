@@ -29,6 +29,7 @@ class AppTests(unittest.TestCase):
         self.assertEqual(type(response_data['Confidence']), float)
         self.assertEqual(type(response_data['Patient']), dict)
         self.assertEqual(type(response_data['Form']), dict)
+        self.assertEqual(type(response_data['Response']), bool)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

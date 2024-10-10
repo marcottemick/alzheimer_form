@@ -79,3 +79,7 @@ class PredictionResponse(BaseModel):
     Confidence: float
     Patient: dict
     Form: dict
+    Response: bool
+
+class StandardResponse(BaseModel):
+    response: bool
