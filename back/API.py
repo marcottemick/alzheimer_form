@@ -3,9 +3,9 @@ from class_BaseModel import PredictionResponse, HealthData, dtypes
 import joblib
 import pandas as pd
 import os
-from pymongo import MongoClient
-import json
-from bson import json_util
+# from pymongo import MongoClient
+# import json
+# from bson import json_util
 from dotenv import load_dotenv
 
 current_os = os.name
@@ -21,10 +21,10 @@ MONGO_DB = os.getenv("MONGO_DB")
 MONGO_COL = os.getenv("MONGO_COL")
 
 # connection à la base de donnée en mongoDB
-CONNECTION_STRING = "mongodb://{}:{}@{}:{}/".format(MONGO_USERNAME, MONGO_PASSWORD, MONGO_HOST, MONGO_PORT)
-client = MongoClient(CONNECTION_STRING)
-db = client[MONGO_DB]
-collection = db[MONGO_COL]
+# CONNECTION_STRING = "mongodb://{}:{}@{}:{}/".format(MONGO_USERNAME, MONGO_PASSWORD, MONGO_HOST, MONGO_PORT)
+# client = MongoClient(CONNECTION_STRING)
+# db = client[MONGO_DB]
+# collection = db[MONGO_COL]
 
 app = FastAPI()
 
@@ -35,7 +35,6 @@ def get_connexion():
 @app.post("/predict", response_model=PredictionResponse)
 def put_form(form: HealthData):
     global dtypes
-    global current_os
     base_dir = os.path.dirname(os.path.abspath(__file__))
     road_model = os.path.join(base_dir, 'decision_tree.joblib')
     loaded_model = joblib.load(road_model)
@@ -54,9 +53,8 @@ def put_form(form: HealthData):
         "Form": df_form.to_dict(orient= "records")[0]
     }
 
-    if current_os == "nt":
-        json_data_predict = json.loads(json.dumps(response, default=json_util.default))
-        collection.insert_one(json_data_predict)
+    # json_data_predict = json.loads(json.dumps(response, default=json_util.default))
+    # collection.insert_one(json_data_predict)
 
     return response
 
