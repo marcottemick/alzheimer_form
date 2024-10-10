@@ -25,8 +25,10 @@ class AppTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         response_data = response.json()
         
-        self.assertEqual(type(response_data['predict']), int)
-        self.assertEqual(type(response_data['confidence']), float)
+        self.assertEqual(type(response_data['Predict']), int)
+        self.assertEqual(type(response_data['Confidence']), float)
+        self.assertEqual(type(response_data['Patient']), dict)
+        self.assertEqual(type(response_data['Form']), dict)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
