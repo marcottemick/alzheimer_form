@@ -1,3 +1,4 @@
+/**Container des différents type d'inputs */
 const ContainerInput = ({ children, inputId, label, description }) => {
     return (
         <div className="w-96 h-32 mx-6 my-4 p-2 bg-blue-200 rounded-md">

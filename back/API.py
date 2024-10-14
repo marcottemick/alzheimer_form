@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from class_BaseModel import PredictionResponse, HealthData, StandardResponse, dtypes
+from class_BaseModel import *
 import joblib
 import pandas as pd
 import os
@@ -19,18 +19,21 @@ MONGO_PASSWORD = os.getenv("MONGO_PASSWORD", "test")
 MONGO_HOST = os.getenv("MONGO_HOST", "localhost")
 MONGO_PORT = os.getenv("MONGO_PORT", "4000")
 MONGO_DB = os.getenv("MONGO_DB", "db_test")
-MONGO_COL = os.getenv("MONGO_COL", "db_test")
+
 
 # connection à la base de donnée en mongoDB
 CONNECTION_STRING = "mongodb://{}:{}@{}:{}/".format(MONGO_USERNAME, MONGO_PASSWORD, MONGO_HOST, MONGO_PORT)
 client = MongoClient(CONNECTION_STRING)
 db = client[MONGO_DB]
-collection = db[MONGO_COL]
 
 app = FastAPI()
 
+
 @app.get("/connexion", response_model=StandardResponse)
 def get_connexion():
+    """
+    Connection entre le back et le front
+    """
     try:
         return {"response": True}
     except Exception as e:
@@ -40,6 +43,9 @@ def get_connexion():
 
 @app.post("/predict", response_model=PredictionResponse)
 def get_predict(form: HealthData):
+    """
+    Envoie de la prédiction au formulaire
+    """
     try:
         global dtypes
         base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -76,12 +82,31 @@ def get_predict(form: HealthData):
 
 @app.post("/predict_db", response_model=StandardResponse)
 def put_db(predict: PredictionResponse):
+    """
+    stockage en bdd du formulaire et de la prédiction
+    """
     try:
         response_dict = predict.dict()
-        del response_dict['Response']
-        response_dict['date'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        json_data_predict = json.loads(json.dumps(response_dict, default=json_util.default))
-        collection.insert_one(json_data_predict)
+        # supprime la réponse du serveur
+        del response_dict["Response"]
+
+        patient = {"patient": response_dict["Patient"]["Name"] + " " + response_dict["Patient"]["FirstName"]}
+        # ajoute la date au formulaire
+        response_dict["Form"]["Date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        response_dict["Form"]["Patient"] = patient["patient"]
+        response_dict["Form"]["Predict"] = response_dict["Predict"]
+        response_dict["Form"]["Confidence"] = response_dict["Confidence"]
+
+        json_data_patients = json.loads(json.dumps(patient, default=json_util.default))
+        collection_patients = db["patients"]
+        # remplace ou ajoute un nouveau patient
+        patient_in_db = collection_patients.find_one_and_replace(json_data_patients, json_data_patients, return_document=False)
+        if patient_in_db is None:
+            collection_patients.insert_one(json_data_patients)
+        # ajoute un nouveau formulaire avec la date de réalisation
+        json_data_form = json.loads(json.dumps(response_dict["Form"], default=json_util.default))
+        collection_form = db["forms"]
+        collection_form.insert_one(json_data_form)
 
         response = {"response": True}
         return response
@@ -89,5 +114,45 @@ def put_db(predict: PredictionResponse):
         print(e)
         response = {"response": False}
         return response
+    
+@app.get("/patients", response_model=PatientsList)
+def get_patients():
+    """
+    Envoie la liste des patients présents en base de données
+    """
+    try:
+        collection_patients = db["patients"]
+        patients_list = list(collection_patients.find({}, {"_id":0}))
+
+        response = {
+            "response": True,
+            "patients": json_util.loads(json_util.dumps(patients_list))}
+        return response
+    
+    except Exception as e:
+        print(e)
+        response = {"response": False}
+        return response
+    
+@app.post("/patient_data", response_model= PatientData)
+def get_patient_data(Patient: PatientName):
+    """
+    Envoie les données du formulaire et la prédiction d'un patient
+    """
+    try:
+        print(Patient)
+        collection_form = db["forms"]
+        patient_data = collection_form.find(Patient.dict(), {"_id": 0})
+
+        response = {
+            "response": True,
+            "patientData": json_util.loads(json_util.dumps(patient_data))}
+        return response
+        
+    except Exception as e:
+        print(e)
+        response = {"response": False}
+        return response
+
 
 # code pour lancer l'API : uvicorn API:app --reload

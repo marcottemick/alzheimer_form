@@ -1,8 +1,8 @@
+/** Container d'affichage des formulaires */
 const ContainerForm = ({ children, title }) => {
     return (
         <div
-            className="rounded-md shadow-lg bg-gray-100 h-fit"
-            style={{ maxWidth: "60vw", minWidth: "60vw"}}>
+            className="rounded-md shadow-lg bg-gray-100 h-fit w-[60vw]">
             <div className="flex justify-center items-center bg-blue-400 h-20 font-bold text-3xl rounded-t-md">
                 {title}
             </div>

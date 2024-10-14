@@ -1,5 +1,6 @@
 import ContainerInput from "./ContainerInput";
 
+/**Input de type "radio" pour choix de deux types*/
 const TypeRadio = ({ radio, setRadio, inputId, label, description }) => {
     return (
         <ContainerInput inputId={inputId} label={label} description={description}>

@@ -9,6 +9,7 @@ import ResponseForm from "./ResponseForm";
 
 const Formulaires = ({ }) => {
     const [currentPage, setCurrentPage] = useState(0);
+    const [error, setError] = useState(false);
     // const formDataInit = {
     //     "FirstName": [""],
     //     "Name": [""],
@@ -46,7 +47,7 @@ const Formulaires = ({ }) => {
     //     "Forgetfulness": [""]
     // }
     const formDataInit = {
-        "FirstName": ["Arhur"],
+        "FirstName": ["Arthur"],
         "Name": ["Martin"],
         "Gender": ["0"],
         "Age": ["65"],
@@ -142,12 +143,14 @@ const Formulaires = ({ }) => {
                     <div className={currentPage === 6 ? "" : "hidden"}>
                         <RecapValid
                             title="Récapitulation des informations"
+                            setError={setError}
                             formData={formData}
                             setPredict={setPredict} />
                     </div>
                 </div> :
                 <div className="w-11/12 flex justify-center items-center">
                     <ResponseForm
+                        error={error}
                         formData={formData}
                         predict={predict}
                         setReinit={setReinit} />

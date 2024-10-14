@@ -1,5 +1,6 @@
 import RecapContainer from "./ContainerRecap";
 
+/** Affiche les informations renseignées dans le formulaire dans une catégorie donnée */
 const Recap = ({ dataSelect, formData, title }) => {
 
     /** Modifie les valeurs numériques par leur équivalent en résultat
@@ -8,7 +9,10 @@ const Recap = ({ dataSelect, formData, title }) => {
      * @returns 
      */
     const unknownValue = (key, value) => {
-        let changeValue = value[0] === "" ? "Pas de valeur" : value[0]
+        let changeValue = value
+        if (typeof value !== "number" && value !== undefined) {
+            changeValue = value[0] === "" ? "Pas de valeur" : value[0]
+        }
         changeValue = (dataSelect[key].type === "options" || dataSelect[key].type === "radio") && changeValue !== "Pas de valeur" ? dataSelect[key].optionsEqual[changeValue] : changeValue
         changeValue = changeValue !== "Pas de valeur" && dataSelect[key].unity !== null ? changeValue + dataSelect[key].unity : changeValue
         return changeValue

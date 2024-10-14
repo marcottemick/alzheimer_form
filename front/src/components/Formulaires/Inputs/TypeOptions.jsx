@@ -1,5 +1,6 @@
 import ContainerInput from "./ContainerInput";
 
+/**Input à plusieurs options */
 const TypeOptions = ({ options, option, setOption, inputId, label, description }) => {
     return (
         <ContainerInput label={label} description={description}>

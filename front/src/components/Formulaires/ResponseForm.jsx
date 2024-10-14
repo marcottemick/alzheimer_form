@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
+import { StandardCSS } from "../../utils";
+import ContainerError from "../error/ContainerError";
 import ContainerForm from "./ContainerForm"
-import { fetchPostPredictDB } from "../../hooks/endpoints";
 
-const ResponseForm = ({ formData, predict, setReinit }) => {
-    const [error, setError] = useState(false);
+/** Affichage de la prédiction */
+const ResponseForm = ({ formData, predict, setReinit, error }) => {
 
     /** Réinitiation du formulaire
      */
     const handleReset = () => {
         setReinit(prev => prev = !prev);
     };
-
-    useEffect(() => {
-        fetchPostPredictDB(predict)
-            .then(response => {
-                setError(!response.response);
-            });
-    }, [predict]);
 
     const responseRenderer = () => {
         return (
@@ -29,7 +22,7 @@ const ResponseForm = ({ formData, predict, setReinit }) => {
                 <div className="bg-blue-400 w-full rounded-b-md h-20 flex justify-center items-center">
                     <div
                         onClick={handleReset}
-                        className="bg-gray-200 w-fit px-4 py-2 rounded-md transition transform hover:-translate-y-1 hover:shadow-lg hover:shadow-gray-500 cursor-pointer">
+                        className={StandardCSS.btn}>
                         Faire un autre test
                     </div>
                 </div>
@@ -38,7 +31,8 @@ const ResponseForm = ({ formData, predict, setReinit }) => {
     };
 
     if (error) {
-        return <div>Une erreur est survenue durant le processus</div>
+        return <ContainerError
+            errorMessage="Une erreur est survenue durant le processus d'analyse du formulaire." />
     } else {
         return responseRenderer()
     }

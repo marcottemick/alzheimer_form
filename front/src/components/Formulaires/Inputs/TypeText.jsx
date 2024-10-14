@@ -1,5 +1,6 @@
 import ContainerInput from "./ContainerInput";
 
+/**Input de type "text" */
 const TypeText = ({ text, setText, inputId, label, description }) => {
     return (
         <ContainerInput inputId={inputId} label={label} description={description}>

@@ -1,5 +1,6 @@
 import ContainerInput from "./ContainerInput";
 
+/**Input de type "num" */
 const TypeNum = ({num, setNum, inputId, label, description, min, max, step}) => {
     return(
         <ContainerInput inputId={inputId} label={label} description={description}> 

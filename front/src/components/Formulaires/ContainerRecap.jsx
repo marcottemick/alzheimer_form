@@ -1,3 +1,4 @@
+/**Container d'affichage de la récapitulation des données */
 const RecapContainer = ({ children }) => {
     return (
         <div

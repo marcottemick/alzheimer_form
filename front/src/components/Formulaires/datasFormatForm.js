@@ -1,5 +1,7 @@
 const NonOuiOptions = { "0": "Non", "1": "Oui" }
 
+/** Contient les données nécessaires à la générations des formulaires et à l'affichage du récap
+ */
 export const datasFormatForms = {
     "DemographicDetail": {
         "title": "Informations personnelles",

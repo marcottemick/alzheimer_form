@@ -73,6 +73,8 @@ dtypes = {
     "DifficultyCompletingTasks": "int",
     "Forgetfulness": "int",
 }
+class StandardResponse(BaseModel):
+    response: bool
 
 class PredictionResponse(BaseModel):
     Predict: int
@@ -81,5 +83,12 @@ class PredictionResponse(BaseModel):
     Form: dict
     Response: bool
 
-class StandardResponse(BaseModel):
-    response: bool
+class PatientName(BaseModel):
+    Patient : str
+
+class PatientsList(StandardResponse):
+    patients: list
+
+class PatientData(StandardResponse):
+    patientData: list
+

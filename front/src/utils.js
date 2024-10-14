@@ -52,3 +52,8 @@ export const inputSelect = (key, obj, formData, setFormData) => {
         />
     }
 };
+
+export const StandardCSS = {
+    "btn" : "bg-gray-200 w-fit px-4 py-2 rounded-md transition transform hover:-translate-y-1 hover:shadow-lg hover:shadow-gray-500 cursor-pointer mx-3"
+}
+
