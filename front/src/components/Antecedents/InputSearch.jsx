@@ -3,7 +3,7 @@ import { fetchGetPatients } from "../../hooks/endpoints";
 import { StandardCSS } from "../../utils";
 
 /** Recherche d'un patient avec génération des options disponibles */
-const InputSearch = ({ patient, setPatient,  handleValidPatient }) => {
+const InputSearch = ({ patient, setPatient,  handleValidPatient, setPatientDatas }) => {
     // contient l'ensemble des patients de la base de données
     const [patients, setPatients] = useState([]);
 
@@ -30,7 +30,7 @@ const InputSearch = ({ patient, setPatient,  handleValidPatient }) => {
                     Rechercher un patient:
                     <input
                         type="text"
-                        list='patients'
+                        list="patients"
                         value={patient}
                         onChange={handleInputChange} />
                     <datalist id="patients">
@@ -54,6 +54,7 @@ const InputSearch = ({ patient, setPatient,  handleValidPatient }) => {
                     className={StandardCSS.btn}
                     onClick={() => {
                         setPatient('');
+                        setPatientDatas([]);
                     }}>
                     <div>
                         Réinitialiser

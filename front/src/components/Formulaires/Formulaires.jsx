@@ -10,78 +10,43 @@ import ResponseForm from "./ResponseForm";
 const Formulaires = ({ }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [error, setError] = useState(false);
-    // const formDataInit = {
-    //     "FirstName": [""],
-    //     "Name": [""],
-    //     "Gender": [""],
-    //     "Age": [""],
-    //     "Ethnicity": [""],
-    //     "EducationLevel": [""],
-    //     "BMI": [""],
-    //     "Smoking": [""],
-    //     "AlcoholConsumption": [""],
-    //     "PhysicalActivity": [""],
-    //     "DietQuality": [""],
-    //     "SleepQuality": [""],
-    //     "FamilyHistoryAlzheimers": [""],
-    //     "CardiovascularDisease": [""],
-    //     "Diabetes": [""],
-    //     "Depression": [""],
-    //     "HeadInjury": [""],
-    //     "Hypertension": [""],
-    //     "SystolicBP": [""],
-    //     "DiastolicBP": [""],
-    //     "CholesterolTotal": [""],
-    //     "CholesterolLDL": [""],
-    //     "CholesterolHDL": [""],
-    //     "CholesterolTriglycerides": [""],
-    //     "MMSE": [""],
-    //     "FunctionalAssessment": [""],
-    //     "MemoryComplaints": [""],
-    //     "BehavioralProblems": [""],
-    //     "ADL": [""],
-    //     "Confusion": [""],
-    //     "Disorientation": [""],
-    //     "PersonalityChanges": [""],
-    //     "DifficultyCompletingTasks": [""],
-    //     "Forgetfulness": [""]
-    // }
     const formDataInit = {
-        "FirstName": ["Arthur"],
-        "Name": ["Martin"],
-        "Gender": ["0"],
-        "Age": ["65"],
-        "Ethnicity": ["1"],
-        "EducationLevel": ["3"],
-        "BMI": ["15"],
-        "Smoking": ["0"],
-        "AlcoholConsumption": ["15"],
-        "PhysicalActivity": ["5"],
-        "DietQuality": ["5"],
-        "SleepQuality": ["5"],
-        "FamilyHistoryAlzheimers": ["0"],
-        "CardiovascularDisease": ["1"],
-        "Diabetes": ["0"],
-        "Depression": ["0"],
-        "HeadInjury": ["1"],
-        "Hypertension": ["0"],
-        "SystolicBP": ["150"],
-        "DiastolicBP": ["100"],
-        "CholesterolTotal": ["200"],
-        "CholesterolLDL": ["200"],
-        "CholesterolHDL": ["100"],
-        "CholesterolTriglycerides": ["20"],
-        "MMSE": ["15"],
-        "FunctionalAssessment": ["0"],
-        "MemoryComplaints": ["0"],
-        "BehavioralProblems": ["0"],
-        "ADL": ["0"],
-        "Confusion": ["1"],
-        "Disorientation": ["0"],
-        "PersonalityChanges": ["1"],
-        "DifficultyCompletingTasks": ["0"],
-        "Forgetfulness": ["0"]
+        "FirstName": [""],
+        "Name": [""],
+        "Gender": [""],
+        "Age": [""],
+        "Ethnicity": [""],
+        "EducationLevel": [""],
+        "BMI": [""],
+        "Smoking": [""],
+        "AlcoholConsumption": [""],
+        "PhysicalActivity": [""],
+        "DietQuality": [""],
+        "SleepQuality": [""],
+        "FamilyHistoryAlzheimers": [""],
+        "CardiovascularDisease": [""],
+        "Diabetes": [""],
+        "Depression": [""],
+        "HeadInjury": [""],
+        "Hypertension": [""],
+        "SystolicBP": [""],
+        "DiastolicBP": [""],
+        "CholesterolTotal": [""],
+        "CholesterolLDL": [""],
+        "CholesterolHDL": [""],
+        "CholesterolTriglycerides": [""],
+        "MMSE": [""],
+        "FunctionalAssessment": [""],
+        "MemoryComplaints": [""],
+        "BehavioralProblems": [""],
+        "ADL": [""],
+        "Confusion": [""],
+        "Disorientation": [""],
+        "PersonalityChanges": [""],
+        "DifficultyCompletingTasks": [""],
+        "Forgetfulness": [""]
     }
+
     const [formData, setFormData] = useState(formDataInit);
     const [predict, setPredict] = useState({});
     const [reinit, setReinit] = useState(false);
@@ -161,7 +126,9 @@ const Formulaires = ({ }) => {
                 className="flex items-center"
                 style={{ marginRight: -100 }}>
                 <Arrow>
-                    <IoIosArrowForward style={{ fontSize: 150, marginRight: 70 }} />
+                    <IoIosArrowForward 
+                    data-testid="arrow-forward"
+                    style={{ fontSize: 150, marginRight: 70 }} />
                 </Arrow>
             </div> : null}
         </div>

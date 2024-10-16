@@ -1,6 +1,6 @@
 # Dockerfile pour le frontend React
 # Utilisation de l'image node officielle
-FROM node:16-alpine
+FROM node:20-alpine
 
 # Répertoire de travail de l'application
 WORKDIR /app

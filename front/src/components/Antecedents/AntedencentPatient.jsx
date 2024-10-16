@@ -1,3 +1,4 @@
+import { StandardCSS } from "../../utils";
 import { datasFormatForms } from "../Formulaires/datasFormatForm";
 import Recap from "../Formulaires/Recap";
 
@@ -9,11 +10,11 @@ const AntecedentPatient = ({ patientData, handleSeeData, id, isOpen }) => {
                 <p className="text-center">Âge: {patientData.Age}</p>
             </div>
             <div className="w-full">
-                <p
-                    className="w-full text-center"
+                <div
+                    className="flex justify-center items-center py-2 bg-gray-300"
                     onClick={() => handleSeeData(id)}>
-                    Voir les renseignements
-                </p>
+                    <p className={StandardCSS.btn}>Voir les renseignements</p> 
+                </div>
                 <div className="w-full flex justify-around items-center flex-wrap">
                     {isOpen.has(id) ? Object.keys(datasFormatForms).map(key =>
                         <div

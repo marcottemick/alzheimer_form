@@ -48,6 +48,7 @@ const Antecedents = () => {
                         patient={patient}
                         setPatient={setPatient}
                         handleValidPatient={handleValidPatient}
+                        setPatientDatas={setPatientDatas}
                     />
                 </label>
                 {!isLoading && <div className="pb-4 overflow-y-scroll"

@@ -19,7 +19,7 @@ export const datasFormatForms = {
                 "unity": null,
                 "options": false,
                 "type": "text",
-                "label": "Nom",
+                "label": "Prénom",
                 "description": "Indiquer le nom du patient(e)"
             },
             "Age": {
