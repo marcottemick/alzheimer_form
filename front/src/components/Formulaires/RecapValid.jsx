@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { fetchPostPredict, fetchPostPredictDB } from "../../hooks/endpoints";
 import { StandardCSS } from "../../utils";
 import ContainerForm from "./ContainerForm"
@@ -27,13 +28,24 @@ const RecapValid = ({ title, formData, setPredict, setError }) => {
                 })
                 .catch(e => {
                     console.error(e);
-                    setError(true)
+                    setError(true);
                 })
-        }
-        else {
-            console.log('Présence de valeur(s) non renseignée(s)')
-        }
-    }
+            }
+            else {
+                console.log("Une ou plusieurs informations sont manquantes !");
+                toast.error(
+                    <p>Une ou plusieurs informations sont manquantes !</p>,
+                    {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        closeOnClick: true,
+                        draggable: false,
+                        pauseOnHover: true,
+                        closeButton: true,
+                    }
+                )
+            };
+    };
 
     return (
         <ContainerForm title={title}>

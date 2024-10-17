@@ -6,6 +6,8 @@ import Formulaires from './components/Formulaires/Formulaires';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Antecedents from './components/Antecedents/Antecedents';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   // stocke la valeur de la connexion avec le back
@@ -36,6 +38,7 @@ function App() {
             <Footer />
           </footer>
         </Router>
+        <ToastContainer />
       </div>
     );
   }

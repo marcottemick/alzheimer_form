@@ -53,23 +53,27 @@ describe('template spec', () => {
     cy.get("input[name='Disorientation'][value='0']").check();
     cy.get("input[name='PersonalityChanges'][value='1']").check();
     cy.get("input[name='DifficultyCompletingTasks'][value='0']").check();
-    cy.get("input[name='Forgetfulness'][value='0']").check();
+    // cy.get("input[name='Forgetfulness'][value='0']").check();
 
     cy.get('[data-testid="arrow-forward"]').click();
     cy.contains("Récapitulation des informations");
+    cy.contains("Pas de valeur");
     cy.contains("Analyser").click();
-
-    cy.contains("Résultat du formulaire")
-    cy.wait(1000)
-    cy.contains("Faire un autre test").click();
-    cy.wait(1000)
-    cy.contains("Informations personnelles");
+    cy.contains("Une ou plusieurs informations sont manquantes !");
+    cy.contains("Une ou plusieurs informations sont manquantes !").click();
 
     cy.contains("Antécédents").click();
-    cy.get("input[type='text']").clear().type("Doe John");
+
+    cy.get("input[type='text']").clear();
     cy.contains("Valider").click();
-    cy.contains("Voir les renseignements").click();
-    cy.wait(500)
-    cy.contains("Voir les renseignements").click();
+    cy.contains("Aucun(e) patient(e) sélectionné(e) !")
+    cy.contains("Aucun(e) patient(e) sélectionné(e) !").click();
+
+
+    cy.get("input[type='text']").clear().type("test test");
+    cy.contains("Valider").click();
+    cy.contains("Le patient(e) demandé(e) n'est pas présent(e) dans notre base de donnée !")
+    cy.contains("Le patient(e) demandé(e) n'est pas présent(e) dans notre base de donnée !").click();
+  
   })
 })

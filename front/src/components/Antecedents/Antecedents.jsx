@@ -2,9 +2,12 @@ import { useState } from "react";
 import InputSearch from "./InputSearch";
 import { fetchGetPatientData } from "../../hooks/endpoints";
 import AntecedentPatient from "./AntedencentPatient";
+import { toast } from "react-toastify";
 
 /** Affichage des antécédents en fonction de la recherche patient effectué */
 const Antecedents = () => {
+    // contient l'ensemble des patients de la base de données
+    const [patients, setPatients] = useState([]);
     // stocke la valeur du patient sélectionné
     const [patient, setPatient] = useState("");
     // stocke les données chargées
@@ -17,11 +20,40 @@ const Antecedents = () => {
     /** Récupère les données liés à un patient sélectionné
      */
     const handleValidPatient = () => {
-        setIsLoading(true);
-        fetchGetPatientData({ "Patient": patient })
-            .then(response => setPatientDatas(response.patientData))
-            .catch(e => console.error(e))
-            .finally(() => setIsLoading(false))
+        if (patient !== "") {
+            const patient_in_list = patients.some(p => p.patient === patient);
+            if (patient_in_list) {
+                setIsLoading(true);
+                fetchGetPatientData({ "Patient": patient })
+                    .then(response => setPatientDatas(response.patientData))
+                    .catch(e => console.error(e))
+                    .finally(() => setIsLoading(false));
+            } else {
+                toast.error(
+                    <p>Le patient(e) demandé(e) n'est pas présent(e) dans notre base de donnée !</p>,
+                    {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        closeOnClick: true,
+                        draggable: false,
+                        pauseOnHover: true,
+                        closeButton: true,
+                    }
+                )
+            };
+        }else {
+            toast.error(
+                <p>Aucun(e) patient(e) sélectionné(e) !</p>,
+                {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    closeOnClick: true,
+                    draggable: false,
+                    pauseOnHover: true,
+                    closeButton: true,
+                }
+            )
+        }
     };
 
     /** Gestion de l'ouverture d'un antécédent patient
@@ -29,10 +61,10 @@ const Antecedents = () => {
      */
     const handleSeeData = (id) => {
         let isOpenCopy = new Set(isOpen)
-        if(isOpen.has(id)) {
+        if (isOpen.has(id)) {
             isOpenCopy.delete(id);
-            setIsOpen(isOpenCopy) ;           
-        }else {
+            setIsOpen(isOpenCopy);
+        } else {
             isOpenCopy.add(id);
             setIsOpen(isOpenCopy);
         };
@@ -45,6 +77,8 @@ const Antecedents = () => {
             <div>
                 <label htmlFor="patients" className="flex justify-center">
                     <InputSearch
+                        patients={patients}
+                        setPatients={setPatients}
                         patient={patient}
                         setPatient={setPatient}
                         handleValidPatient={handleValidPatient}
@@ -52,14 +86,14 @@ const Antecedents = () => {
                     />
                 </label>
                 {!isLoading && <div className="pb-4 overflow-y-scroll"
-                 style={{ height: 'calc(100vh - 200px)' }}>
+                    style={{ height: 'calc(100vh - 200px)' }}>
                     {patientDatas.map((data, id) =>
                         <div key={id}>
-                            <AntecedentPatient 
-                            isOpen={isOpen}
-                            handleSeeData={handleSeeData}
-                            id={id}
-                            patientData={data} />
+                            <AntecedentPatient
+                                isOpen={isOpen}
+                                handleSeeData={handleSeeData}
+                                id={id}
+                                patientData={data} />
                         </div>
                     )}
                 </div>}

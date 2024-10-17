@@ -3,9 +3,8 @@ import { fetchGetPatients } from "../../hooks/endpoints";
 import { StandardCSS } from "../../utils";
 
 /** Recherche d'un patient avec génération des options disponibles */
-const InputSearch = ({ patient, setPatient,  handleValidPatient, setPatientDatas }) => {
-    // contient l'ensemble des patients de la base de données
-    const [patients, setPatients] = useState([]);
+const InputSearch = ({ patients, setPatients, patient, setPatient,  handleValidPatient, setPatientDatas }) => {
+    
 
     // appel par défaut l'ensemble des patients de la base de données
     useEffect(() => {
