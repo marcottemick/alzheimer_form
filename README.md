@@ -15,7 +15,7 @@
 <h3>Résultats</h3>
 <p>Pour la méthode pipeline, un modèle Random Forest a obtenu un F1-score de 0.95. Cependant, avec AutoML, le modèle final basé sur un Decision Tree a atteint un F1-score de 0.98, le rendant plus performant dans ce contexte. Par conséquent, ce dernier a été retenu pour l'intégration dans l'application.</p>
 
-<h3>App</h3>
+<h2>App</h2>
 <p>L'application a été dockerisée en utilisant une approche multi-conteneurs pour gérer le front, le back et la base de données MongoDB séparément. Un fichier `docker-compose.yml` est utilisé pour orchestrer l'ensemble des services.</p>
 
 
@@ -24,5 +24,6 @@
 
 <h3>Back</h3>
 <p>Le back a été codé en <strong>Python</strong> avec une API réalisée avec <strong>FastAPI</strong> et un bdd de type noSQL <strong>mongoDB</strong>.</p>
+
 <h3>Tests</h3>
 <p>Les tests unitaires du back-end ont été réalisés avec <strong>unittest</strong> et sont automatiquement exécutés à chaque commit via un pipeline CI/CD. Du côté front, des tests end-to-end ont été réalisés avec <strong>Cypress</strong> pour valider les interactions utilisateur avec l'interface.</p>
