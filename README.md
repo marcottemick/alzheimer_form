@@ -20,7 +20,7 @@
 <p>L'application a été dockérisée.</p>
 
 <h3>Front</h3>
-<p>Le front a été réalisé en <strong>React.js<strong/>, avec utilisation de deux extensions, "react-icons" et "react-toastify". <strong>Tailwind<strong> a été utilisé pour réalisé le CSS.</p>
+<p>Le front a été réalisé en <strong>React.js</strong>, avec utilisation de deux extensions, "react-icons" et "react-toastify". <strong>Tailwind</strong> a été utilisé pour réalisé le CSS.</p>
 
 <h3>Back</h3>
 <p>Le back a été codé en <strong>Python</strong> avec une API réalisée avec <strong>FastAPI</strong> et un bdd de type noSQL <strong>mongoDB</strong>.</p>
